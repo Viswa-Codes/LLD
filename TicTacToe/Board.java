@@ -6,18 +6,18 @@ import java.util.AbstractMap.SimpleEntry;
 
 public class Board {
     int size;
-    PieceType[][] board;
+    PlayingPiece[][] board;
 
     public Board(int boardSize) {
         this.size = boardSize;
-        this.board = new PieceType[size][size];
+        this.board = new PlayingPiece[size][size];
     }
 
-    public boolean addPiece(int row, int column, PieceType Pt) {
+    public boolean addPiece(int row, int column, PlayingPiece Pp) {
         if (board[row][column] != null) {
             return false;
         }
-        board[row][column] = Pt;
+        board[row][column] = Pp;
         return true;
     }
 
@@ -39,7 +39,7 @@ public class Board {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (board[i][j] != null) {
-                    System.out.print(board[i][j] + "   ");
+                    System.out.print(board[i][j].piecetype + "   ");
                 } else {
                     System.out.print("    ");
                 }

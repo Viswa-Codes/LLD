@@ -2,11 +2,11 @@ package TicTacToe;
 
 public class Player {
     public String name;
-    public PieceType pt;
+    public PlayingPiece pp;
 
-    public Player(String name,PieceType pt){
-        this.pt = pt;
+    public Player(String name,PlayingPiece pp){
+        this.pp = pp;
         this.name = name;
     }
-    
+
 }
