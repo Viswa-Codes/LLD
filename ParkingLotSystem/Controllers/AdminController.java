@@ -1,12 +1,17 @@
 package ParkingLotSystem.Controllers;
 
+import ParkingLotSystem.Services.Adminservice;
 import ParkingLotSystem.domains.PricingRule;
 import ParkingLotSystem.domains.Vehicle;
 
 public class AdminController {
+    private Adminservice adminService;
     public AdminController(){
-
+        //Initalize the service here
     }
+
+
+    //call the serivice for each methodd 
     public void intalizeParkinglot(){
 
     }

@@ -2,14 +2,31 @@ package ParkingLotSystem.Controllers;
 
 import java.util.UUID;
 
+import ParkingLotSystem.Services.TicketService;
+import ParkingLotSystem.Services.Slotservice;
+import ParkingLotSystem.domains.Ticket;
 import ParkingLotSystem.domains.Vehicle;
 
 public class EntryController {
-    public EntryController(){
+    //Invoke required services using Entry flow
+    private TicketService ticketService;
+    private Slotservice slotService;
 
+    public EntryController(TicketService ticketService, Slotservice slotService){
+        this.ticketService = ticketService;
+        this.slotService = slotService;
     }
 
     public EntryResult enterVehicle(String licensePlate, Vehicle.VehicleType vehicleType){
+
+        //UUID slotId = SlotService.allocateSlot();
+        //Handle edgecase
+        // if (slotId.isEmpty()) {
+        //         return new EntryResult(false, null, null, "No available slots for vehicle type: " + vehicleType);
+        // }
+
+        Vehicle vehicle = new Vehicle(licensePlate, vehicleType);
+        // Ticket ticket = ticketService.generateTicket(vehicle, slotId.get());
 
         return new EntryResult(false, null, null, "Success Message");
     }

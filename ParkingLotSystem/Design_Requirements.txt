@@ -119,8 +119,61 @@ Step 4: Defines Class Structures & Relationships
 
 Example :
 For controller write skeleton only not inside flow based on flow
-For Service also define methods only  based on interaction Flow classes we decided earlier
-For repo layer connect it with service layer
+For Service also define methods only  based on interaction Flow classes we decided earlier -> only  skeleton
+For repo layer connect it with service layer -> only  skeleton
 
 And also you can implement design patterns like adapter for PaymentGateway
 --------------------------------------------------------------------------------------------
+
+
+Step 5:  Core use cases and methods
+
+Converting Interaction flow into BL from Controller -> service -> repo may be similar
+
+Handle Edgecases Greacefully
+
+Entry Use Case
+enterVehicle() → SlotService.allocateSlot() → TicketService.generateTicket() → TicketRepository.save() → Return EntryResult
+
+Exit Use Case:
+exitVehicle() → Get Ticket → Calculate Fee → Process Payment (with retries) → Release Slot → Generate Receipt →Deactivate ticket-> Return ExitResult
+
+Admin Use Cases:
+
+    addFloor() : Save new floor
+    addSlot() : Save new slot
+    updatePricing() : Update pricing rules
+--------------------------------------------------------------------------------------------
+Step 6: Apply OOP Principles & Design Patterns
+
+Yes design and everything is completed till step 5
+
+Now this step is to expose ourseelves to interviewer what design principles or pattern we used in our design
+
+Example:
+Adapter,Service, repo
+
+SOLID
+--------------------------------------------------------------------------------------------
+
+Step 7: Handling Edge Cases
+
+Tell the edge case thinking and propose and arbitary implementation via Design no code
+
+Example:
+Payment failure - Implement retry logic through the PaymentGatewayAdapter to handle payment failures (e.g., due to network issues).or Take cash
+
+Interview Tip: Mention failure scenarios to show you think beyond the happy path.
+--------------------------------------------------------------------------------------------
+//Before Step 8 to run our designed ones in machine coding round Implement Client code simulation
+
+Step 8: Package Structure & Class Diagram
+Entry Flow , Exit flow and admin flow class Diagram
+
+Assocaiation : I work with you
+Aggregation : I have you but you are not mine
+Composistion : You are mine and only mine
+--------------------------------------------------------------------------------------------
+
+
+Step 9 : Future Requirements
