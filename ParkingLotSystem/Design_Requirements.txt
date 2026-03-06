@@ -1,0 +1,126 @@
+1. Functional Requirements
+Entry Flow
+
+    Vehicle arrives at gate
+    Assign slot based on vehicle type
+    Generate ticket
+    Mark slot as occupied
+    Return entry response
+
+Exit Flow
+
+    Present ticket
+    Calculate fee using pricing rules (flat vs hourly)
+    Process payment
+    Release slot
+    Return exit response with receipt
+
+Admin Flow
+
+    Add/Edit/Delete floors and slots
+    Define/update pricing rules
+    View parking lot status
+
+
+Edge Cases to Consider
+--------------------------------------------------------------------------------------------
+Easy rule to identify entity
+
+If it is a real-world object → Entity
+If it stores data → Entity
+If system manages it → Entity
+--------------------------------------------------------------------------------------------
+
+
+2.  Identify Core Entities(Most simple => assume it as a class having properties and behaviour)
+=> can be identfifed by mapping enties whether they can form DB tables or not
+
+
+# Vehicle
+UUID id
+String VehicleNumber/License VehicleNumber
+VehicleType vehicleType (enum) {BIKE,CAR,EV}
+
+
+# slot
+UUID id
+SlotType slottype(enum) {TWO_WHEELER,FOUR_WHEELER}
+int floorNumber
+isOccupied
+
+# ticket
+UUID id
+UUID vehicle.id
+UUID slot.id
+LocalDateTime entryTime
+boolean isActive
+
+
+# pricingRule
+UUID id
+VehicleType vehicleType
+double rateperhour
+double flatPrice
+
+# payment
+UUID id
+UUID ticketid
+PaymentStatus status{enum}
+int amount
+PaymentGateway  gateway {enum}
+
+#Floor 
+UUID id
+int floorNumber
+List<Slot>slot
+
+# Recipet
+UUID id
+UUID ticketId
+PaymentStatus status{enum}
+int totalFee
+LocalDateTime exitTime
+
+
+# DTO
+
+## Entry response
+boolean success
+String message
+Strind Data
+
+
+## Exit response
+boolean success
+String message
+Strind Data
+--------------------------------------------------------------------------------------------
+Step 3: Visual Interaction Flows
+
+Entry Flow:
+Vehicle comes -> allocate slot -> GenerateTicket  -> Return Entry response
+
+
+Exit flow:
+Gives Ticket -> CalculatePrice -> ProcessPayment -> Generate Recipet -> Relase Slot->Deactivate Ticket ->  ->Return Exit reponse
+
+
+Admin Flow:
+Manage Floor 
+Manage slots 
+Updating pricing 
+
+
+and also decide classes for services and repo 
+Ticket , Slot,Recipet,payment,pricing,Admin service
+--------------------------------------------------------------------------------------------
+
+Step 4: Defines Class Structures & Relationships    
+
+Example :
+For controller write skeleton only not inside flow based on flow
+For Service also define methods only  based on interaction Flow classes we decided earlier
+For repo layer connect it with service layer
+
+And also you can implement design patterns like adapter for PaymentGateway
+--------------------------------------------------------------------------------------------
